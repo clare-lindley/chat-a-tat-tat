@@ -1,17 +1,25 @@
-import express from "express";
-import {createServer} from "http";
+'use strict';
+
+import express from 'express';
+import {createServer} from 'http';
+import io from 'socket.io';
 const app = express();
 const http = createServer(app);
+const socket = io(http);
 
 // This is a route handler for the root URL '/'
 app.get('/', (req, res) => {
-    res.send('<h1>Hello world</h1>');
+    res.sendFile(`${__dirname}/index.html`);
 });
 
-// async
+socket.on('connection', (socket) => {
+    console.log('a user connected');
+    socket.on('disconnect', () => console.log('user disconnected'));
+});
+
 http.listen(3000, () => console.log('listening on *:3000'));
 
-// sync
+
 let helloWorld = 'Hello world';
 const helloFunction = () => console.log(`${helloWorld} removed`);
 helloFunction();
