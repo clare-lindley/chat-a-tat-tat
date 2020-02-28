@@ -13,5 +13,5 @@ http.listen(3000, () => console.log('listening on *:3000'));
 
 // sync
 let helloWorld = 'Hello world';
-const helloFunction = () => console.log(`${helloWorld} REBUILT THE ALL AGAIN`);
+const helloFunction = () => console.log(`${helloWorld} removed`);
 helloFunction();
